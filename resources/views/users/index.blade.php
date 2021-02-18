@@ -25,7 +25,7 @@
                             @break
                         @default
                             text-primary
-                    @endswitch"></span>{{$user->role == 'A' ? __('Admin') : ($user->role == 'P' ? __('Pediatrician') : __('User'))}}</li>
+                    @endswitch">{{$user->role == 'A' ? __('Admin') : ($user->role == 'P' ? __('Pediatrician') : __('Patient'))}}</span></li>
                     <li>{{__('E-Mail Address')}}: <span style="font-weight: bold" class="text-primary">{{$user->email}}</span></li>
                     <li>{{__('Phone number')}}: <span style="font-weight: bold" class="text-primary">{{$user->phone_number}}</span></li>
                     <li>{{__('Fiscal code')}}: <span style="font-weight: bold" class="text-primary">{{Str::upper($user->fiscal_code)}}</span></li>
