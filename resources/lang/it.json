@@ -22,5 +22,9 @@
     "Phone number": "Telefono",
     "Birth date": "Data di nascita",
     "Fiscal code": "Codice fiscale",
-    "Users": "Utenti"
+    "Users": "Utenti",
+    "Patient": "Paziente",
+    "Pediatrician": "Pediatra",
+    "Admin": "Amministratore",
+    "Role": "Ruolo" 
 }
