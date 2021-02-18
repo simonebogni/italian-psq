@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory([
             'role'=>'A',
             'name' => 'Admin',
-            'email'=>'',
+            'email'=>'admin@italianpsq.com',
             'email_verified_at'=>$now,
             'password' => '$2y$10$IyaLQoV8Nq8lAFUCUrWCTu85rJ7A7U2TdXH2tgK3l1CxiEvrqZxg.',
             'password_changed_at' => $now,
