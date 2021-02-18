@@ -103,7 +103,12 @@ class SurveyController extends Controller
      */
     public function show(Survey $survey)
     {
-        return view('surveys.show', ["survey" =>$survey, "questionArray" => $survey->toQuestionArray()]);
+        $showButton = false;
+        $surveyOwner = $survey->user();
+        if(auth()->user->id == $surveyOwner->user_id){
+            $showButton = true;
+        }
+        return view('surveys.show', ["survey" =>$survey, "questionArray" => $survey->toQuestionArray(), "showButton" => $showButton]);
     }
 
     /**

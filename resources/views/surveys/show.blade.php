@@ -76,10 +76,12 @@
             </table>
         </div>
     </div>
+    @if ($showButton)    
     <div class="row">
         <div class="col col-sm-6 offset-sm-6 col-md-4 offset-md-8 col-lg-3 offset-lg-9">
             <a class="btn btn-block btn-primary" role="button" href="/survey/{{$survey->id}}/setChecked">{{__("Mark as checked")}}</a>
         </div>
     </div>
+    @endif
 </div>
 @endsection
