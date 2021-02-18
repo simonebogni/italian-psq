@@ -35,7 +35,7 @@
                     <p style="margin-bottom: 0.3rem;">Hai {{$surveysNew}} {{$surveysNew == 1 ? "nuovo questionario":"nuovi questionari"}} su {{$surveysTotal}}</p>
                     @break
                 @default
-                <p class="mt-2" style="margin-bottom: 0.3rem;">Hai compilato {{$surveysTotal}} questionari{{$patients == 1 ? "o": ""}}</p>
+                <p class="mt-2" style="margin-bottom: 0.3rem;">Hai compilato {{$surveysTotal}} questionari{{$surveysTotal == 1 ? "o": ""}}</p>
             @endswitch
         </div>
     </div>
