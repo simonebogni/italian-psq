@@ -105,7 +105,7 @@ class SurveyController extends Controller
     {
         $showButton = false;
         $surveyOwner = $survey->user();
-        if(auth()->user()->id == $surveyOwner->user_id){
+        if(auth()->user()->id == $surveyOwner->ownPediatrician()->id){
             $showButton = true;
         }
         return view('surveys.show', ["survey" =>$survey, "questionArray" => $survey->toQuestionArray(), "showButton" => $showButton]);
@@ -147,7 +147,7 @@ class SurveyController extends Controller
 
     public function setChecked(Survey $survey){
         $surveyOwner = $survey->user();
-        if(auth()->user()->id == $surveyOwner->user_id){
+        if(auth()->user()->id == $surveyOwner->ownPediatrician()->id){
             $survey->update(['checked_at' => Carbon::now()]);
             return redirect()->back()->with('success', __('Survey checked!'));
         }
