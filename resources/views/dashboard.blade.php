@@ -25,6 +25,7 @@
     <div class="col-md-6 d-flex justify-content-center mt-3">
         <div>
             <h3 class="h3 text-primary">Dati statistici</h3>
+            {{dd($user)}}
             @switch($user->role)
                 @case('A')
                 <p class="mt-2" style="margin-bottom: 0.3rem;">{{$users == 1 ? "E' presente ".$users." utente" : "Sono presenti ".$users." utenti"}}</p>
