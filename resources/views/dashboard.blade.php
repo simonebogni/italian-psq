@@ -31,7 +31,7 @@
                 <p style="margin-bottom: 0.3rem;">{{$surveysTotal == 1 ? "E' presente ".$surveysTotal." questionario" : "Sono presenti ".$surveysTotal." questionari"}}</p>
                     @break
                 @case('P')
-                    <p class="mt-2" style="margin-bottom: 0.3rem;">Hai {{$users}} pazient{{$users == 1 ? "e": "i"}}</p>
+                    <p class="mt-2" style="margin-bottom: 0.3rem;">Hai {{$patients}} pazient{{$patients == 1 ? "e": "i"}}</p>
                     <p style="margin-bottom: 0.3rem;">Hai {{$surveysNew}} {{$surveysNew == 1 ? "nuovo questionario":"nuovi questionari"}} su {{$surveysTotal}}</p>
                     @break
                 @default

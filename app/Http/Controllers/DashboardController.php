@@ -29,9 +29,19 @@ class DashboardController extends Controller
             return redirect(route('password.request'));
          }
          else{
+            $role = auth()->user()->role;
+            $users = 0;
+            $patients = 0;
+            if($role == 'A'){
+                $users = User::count();
+            }
+            if($role == 'P'){
+                $patients = User::where('user_id', auth()->user()->id)->count();
+            }
             return view('dashboard', [
                 'user' => auth()->user(),
-                'users' => User::where('user_id', auth()->user()->id)->count(),
+                'users' => $users,
+                'patients' => $patients,
                 'surveysTotal' => Survey::join('users', 'surveys.user_id', '=', 'users.id')
                     ->whereNotNull('users.user_id')->count(),
                 'surveysNew' => Survey::join('users', 'surveys.user_id', '=', 'users.id')
