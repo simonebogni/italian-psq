@@ -28,6 +28,7 @@ Route::get('/surveys', [App\Http\Controllers\SurveyController::class, 'index'])-
 Route::post('/surveys', [App\Http\Controllers\SurveyController::class, 'store'])->name('surveys.store')->middleware('auth');
 Route::get('/surveys/create', [App\Http\Controllers\SurveyController::class, 'create'])->name('surveys.create')->middleware('auth');
 Route::get('/surveys/{survey}', [App\Http\Controllers\SurveyController::class, 'show'])->name('surveys.show')->middleware('auth');
+Route::get('/surveys/{survey}/setChecked', [App\Http\Controllers\SurveyController::class, 'setChecked'])->name('surveys.setChecked')->middleware('auth');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');

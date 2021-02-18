@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Survey;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class SurveyController extends Controller
@@ -137,5 +138,14 @@ class SurveyController extends Controller
     public function destroy(Survey $survey)
     {
         //
+    }
+
+    public function setChecked(Survey $survey){
+        $surveyOwner = $survey->user();
+        if(auth()->user->id == $surveyOwner->user_id){
+            $survey->update(['checked_at' => Carbon::now()]);
+            return redirect()->back()->with('success', __('Survey checked!'));
+        }
+        return redirect()->back()->with('fail', __('You don\'t have the right privileges!'));
     }
 }

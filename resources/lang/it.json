@@ -26,5 +26,8 @@
     "Patient": "Paziente",
     "Pediatrician": "Pediatra",
     "Admin": "Amministratore",
-    "Role": "Ruolo" 
+    "Role": "Ruolo",
+    "Survey checked!": "Questionario segnato come controllato!",
+    "You don't have the right privileges!": "Non hai i privilegi necessari!",
+    "Mark as checked": "Indica come controllato"
 }

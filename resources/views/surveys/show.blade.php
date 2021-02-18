@@ -1,6 +1,22 @@
 @extends('layouts.base')
 @section('main-content')
 <div class="container">
+    @if (\Session::has('fail'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>{!! \Session::get('fail') !!}</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>   
+    @endif
+    @if (\Session::has('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>{!! \Session::get('success') !!}</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>   
+    @endif
     <h2 class="h2 underlinedElement">Dettagli paziente</h2>
     <div class="row">
         <div class="col">
@@ -58,6 +74,11 @@
                     @endforeach
                 </tbody>
             </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col col-sm-6 offset-sm-6 col-md-4 offset-md-8 col-lg-3 offset-lg-9">
+            <a class="btn btn-block btn-primary" role="button" href="/survey/{{$survey->id}}/setChecked">{{__("Mark as checked")}}</a>
         </div>
     </div>
 </div>
