@@ -19,7 +19,7 @@ class SurveyController extends Controller
         $surveys = null;
         switch($user->role){
             case 'A':
-                $surveys = Survey::all();
+                $surveys = Survey::get()->all();
                 $role = 'Admin';
                 break;
             case 'P':
