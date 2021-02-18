@@ -16,7 +16,16 @@
             <div class="card-body">
                 <h5 class="card-title h5 text-primary" style="font-weight: bold">{{$user->name}}</h5>
                 <ul class="card-ul-list">
-                    <li>{{__('Role')}}: {{$user->role == 'A' ? __('Admin') : ($user->role == 'P' ? __('Pediatrician') : __('User'))}}</li>
+                    <li>{{__('Role')}}: <span class="@switch($user->role)
+                        @case('A')
+                            text-danger
+                            @break
+                        @case('P')
+                            text-success
+                            @break
+                        @default
+                            text-primary
+                    @endswitch"></span>{{$user->role == 'A' ? __('Admin') : ($user->role == 'P' ? __('Pediatrician') : __('User'))}}</li>
                     <li>{{__('E-Mail Address')}}: <span style="font-weight: bold" class="text-primary">{{$user->email}}</span></li>
                     <li>{{__('Phone number')}}: <span style="font-weight: bold" class="text-primary">{{$user->phone_number}}</span></li>
                     <li>{{__('Fiscal code')}}: <span style="font-weight: bold" class="text-primary">{{Str::upper($user->fiscal_code)}}</span></li>
