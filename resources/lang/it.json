@@ -26,9 +26,12 @@
     "Patient": "Paziente",
     "Pediatrician": "Pediatra",
     "Admin": "Amministratore",
+    "Name": "Nome",
     "Role": "Ruolo",
     "Survey checked!": "Questionario segnato come controllato!",
     "You don't have the right privileges!": "Non hai i privilegi necessari!",
     "Mark as checked": "Indica come controllato",
-    "My profile": "Il mio profilo"
+    "My profile": "Il mio profilo",
+    "Latest password change date": "Ultima data di cambio password",
+    "User details": "Dettagli utente"
 }

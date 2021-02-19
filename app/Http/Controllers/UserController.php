@@ -60,7 +60,30 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        $authorized = false;
+        $edit = false;
+        $loggedUser = auth()->user();
+        switch ($loggedUser->role) {
+            case 'A':
+                $authorized = false;
+                $edit = false;
+                break;
+            case 'P':
+                if($user->user_id == $loggedUser->id){
+                    $authorized = true;
+                }
+                break;
+            default:
+                if($user->id == $loggedUser->id){
+                    $authorized = true;
+                    $edit = true;
+                }
+                break;
+        }
+        if ($authorized) {
+            return view('users.show', ["user" =>$user, "edit"=>true]);
+        }
+        abort(401, __("You don't have the right privileges!"));
     }
 
     /**
