@@ -65,8 +65,8 @@ class UserController extends Controller
         $loggedUser = auth()->user();
         switch ($loggedUser->role) {
             case 'A':
-                $authorized = false;
-                $edit = false;
+                $authorized = true;
+                $edit = true;
                 break;
             case 'P':
                 if($user->ownPediatrician->id == $loggedUser->id){
