@@ -26,9 +26,9 @@
             <p>{{__('Pediatrician')}} - <span style="font-weight: bold" class="text-primary">{{$user->ownPediatrician()->get()->first()->name}}</span></p>
             @endif
             <p>{{__("E-Mail Address")}} - <span style="font-weight: bold" class="text-primary">{{$user->email}}</span></p>
-            <p>{{__("Latest password change date")}} - <span style="font-weight: bold" class="text-primary">{{$user->password_changed_at->format('d/m/Y')}}</span></p>
+            <p>{{__("Latest password change date")}} - <span style="font-weight: bold" class="text-primary">{{$user->password_changed_at == null ? __("Password not yet changed") : $user->password_changed_at->format('d/m/Y')}}</span></p>
             <p>{{__("Birth date")}} - <span style="font-weight: bold" class="text-primary">{{$user->birth_date->format('d/m/Y')}}</span></p>
-            <p>{{__("Fiscal code")}} - <span style="font-weight: bold" class="text-primary">{{$user->fiscal_code}}</span></p>
+            <p>{{__("Fiscal code")}} - <span style="font-weight: bold" class="text-primary">{{Str::upper($user->fiscal_code)}}</span></p>
             <p>{{__("Phone number")}} - <span style="font-weight: bold" class="text-primary">{{$user->phone_number}}</span></p>
         </div>
     </div>
