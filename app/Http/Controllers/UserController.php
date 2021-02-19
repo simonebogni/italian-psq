@@ -69,7 +69,7 @@ class UserController extends Controller
                 $edit = false;
                 break;
             case 'P':
-                if($user->user_id == $loggedUser->id){
+                if($user->ownPediatrician()->get()->first()->id == $loggedUser->id){
                     $authorized = true;
                 }
                 break;
@@ -81,7 +81,7 @@ class UserController extends Controller
                 break;
         }
         if ($authorized) {
-            return view('users.show', ["user" =>$user, "edit"=>true]);
+            return view('users.show', ["user" =>$user, "edit"=>$edit]);
         }
         abort(401, __("You don't have the right privileges!"));
     }
