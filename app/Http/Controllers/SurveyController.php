@@ -105,7 +105,7 @@ class SurveyController extends Controller
     {
         $showButton = false;
         $surveyOwner = $survey->user()->get()->first();
-        if(auth()->user()->id == $surveyOwner->ownPediatrician()->get()->first()->id){
+        if(auth()->user()->id == $surveyOwner->ownPediatrician()->get()->first()->id && $survey->checked_at == null){
             $showButton = true;
         }
         return view('surveys.show', ["survey" =>$survey, "questionArray" => $survey->toQuestionArray(), "showButton" => $showButton]);
