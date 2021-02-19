@@ -103,12 +103,34 @@ class SurveyController extends Controller
      */
     public function show(Survey $survey)
     {
-        $showButton = false;
+        //visible only to admins, owner and its pediatrician
+        $loggedUser = auth()->user();
         $surveyOwner = $survey->user()->get()->first();
-        if(auth()->user()->id == $surveyOwner->ownPediatrician()->get()->first()->id && $survey->checked_at == null){
-            $showButton = true;
+        $authorized = false;
+        $showButton = false;
+        switch ($loggedUser->role) {
+            case 'A':
+                $authorized = true;
+                $showButton = true;
+                break;
+            case 'P':
+                if($loggedUser->id == $surveyOwner->ownPediatrician()->get()->first()->id){
+                    $authorized = true;
+                    if($survey->checked_at == null){
+                        $showButton = true;
+                    }
+                }
+                break;
+            default:
+                if($loggedUser->id == $surveyOwner->id){
+                    $authorized = true;
+                }
+                break;
         }
-        return view('surveys.show', ["survey" =>$survey, "questionArray" => $survey->toQuestionArray(), "showButton" => $showButton]);
+        if($authorized){
+            return view('surveys.show', ["survey" =>$survey, "questionArray" => $survey->toQuestionArray(), "showButton" => $showButton]);
+        }
+        abort(401, __("You don't have the right privileges!"));
     }
 
     /**
