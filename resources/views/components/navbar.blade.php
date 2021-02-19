@@ -25,6 +25,7 @@
                 <a class="nav-link" href="/dashboard">Dashboard</a>
                 @endif
             </li>
+            @if (auth()->user()->role != 'U')    
             <li class="nav-item text-center">
                 @if (Request::is('users*'))
                 <a class="nav-link active" href="{{route('users')}}">{{__('Users')}} <span class="sr-only">(current)</span></a>    
@@ -32,6 +33,7 @@
                 <a class="nav-link" href="{{route('users')}}">{{__('Users')}}</a>       
                 @endif
             </li>
+            @endif
             <li class="nav-item text-center dropdown">
                 <a id="navbarDropdownSurveys" class='nav-link dropdown-toggle @if (Request::is('surveys*')) active @endif' href="#dropdown-survey" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Questionari @if (Request::is('surveys*'))<span class="sr-only">(corrente)</span>@endif
@@ -75,6 +77,9 @@
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" id="dropdown-logout">
+                    <a class="dropdown-item @if (Request::is('users/'.auth()->user()->id))
+                        active
+                    @endif" href="/users/{{auth()->user()->id}}">{{__("My profile")}}</a>
                     <a class="dropdown-item" href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
