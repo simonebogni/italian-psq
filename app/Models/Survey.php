@@ -284,7 +284,17 @@ class Survey extends Model
         'easily_distracted',
         'agitate_when_sit',
         'hyperkinetic',
-        'interrupts_others'
+        'interrupts_others',
+        'checked_at'
+    ];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'checked_at' => 'datetime'
     ];
 
     public function user(){
