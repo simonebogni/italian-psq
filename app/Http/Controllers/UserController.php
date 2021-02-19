@@ -63,7 +63,6 @@ class UserController extends Controller
         $authorized = false;
         $edit = false;
         $loggedUser = auth()->user();
-        dd($user);
         switch ($loggedUser->role) {
             case 'A':
                 $authorized = false;
