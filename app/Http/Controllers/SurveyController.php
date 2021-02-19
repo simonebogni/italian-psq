@@ -147,6 +147,12 @@ class SurveyController extends Controller
 
     public function setChecked(Survey $survey){
         $surveyOwner = $survey->user()->get()->first();
+        dd([
+            "survey" => $survey,
+            "surveyOwner" => $surveyOwner,
+            "auth-user-id" => auth()->user()->id,
+            "pediatrician" => $surveyOwner->ownPediatrician()->get()->first()
+        ]);
         if(auth()->user()->id == $surveyOwner->ownPediatrician()->get()->first()->id){
             $survey->update(['checked_at' => Carbon::now()]);
             return redirect()->back()->with('success', __('Survey checked!'));
