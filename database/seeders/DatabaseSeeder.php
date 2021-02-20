@@ -37,7 +37,19 @@ class DatabaseSeeder extends Seeder
             'fiscal_code' => 'VRDGSP92R07L682G',
             'phone_number' => '01234567890'
             ])->count(1)->create();
-        \App\Models\User::factory(['user_id'=>1])->count(5)->create();
+        \App\Models\User::factory([
+            'role'=>'U',
+            'name' => 'Alessandro Manzoni',
+            'user_id' => 1,
+            'email'=>'a.manzoni@gmail.com',
+            'email_verified_at'=>$now,
+            'password' => '$2y$10$IyaLQoV8Nq8lAFUCUrWCTu85rJ7A7U2TdXH2tgK3l1CxiEvrqZxg.',
+            'password_changed_at' => $now,
+            'birth_date' => '2000-01-01 00:00:00',
+            'fiscal_code' => 'MNZLSN15C07F205K',
+            'phone_number' => '01234567890'
+            ])->count(1)->create();
+        \App\Models\User::factory(['user_id'=>1])->count(4)->create();
         \App\Models\User::factory(['user_id'=>2])->count(6)->create();
         \App\Models\Survey::factory(['user_id'=>3])->count(3)->create();
         \App\Models\Survey::factory(['user_id'=>7])->count(1)->create();
