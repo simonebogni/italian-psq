@@ -54,12 +54,12 @@
             <tbody>
                 @foreach($surveys as $survey)
                 <tr class="@if($survey->score()>=0.33) table-danger @endif @if($survey->score()>=0.25 && $survey->score()<0.33) table-warning @endif">
-                    <td>{{$survey->user->name}}</td>
-                    <td>{{$survey->user->email}}</td>
-                    <td>{{$survey->score()}}</td>
-                    <td>{{$survey->created_at}}</td>
-                    <td>{{$survey->checked_at == null ? "-" : $survey->checked_at->format('d/m/Y')}}</td>
-                    <td>
+                    <td class="align-middle">{{$survey->user->name}}</td>
+                    <td class="align-middle">{{$survey->user->email}}</td>
+                    <td class="align-middle text-center">{{$survey->score()}}</td>
+                    <td class="align-middle text-center">{{$survey->created_at}}</td>
+                    <td class="align-middle text-center">{{$survey->checked_at == null ? "-" : $survey->checked_at->format('d/m/Y')}}</td>
+                    <td class="align-middle">
                         <a class="btn btn-outline-primary btn-block mt-2" href="/surveys/{{$survey->id}}">{{__('Details')}}</a>
                         @if($showDeleteButton)
                         <form action="{{route('surveys.destroy', [$survey])}}" method="POST">
