@@ -23,7 +23,7 @@ class SurveyController extends Controller
         $showDeleteButton = false;
         switch($user->role){
             case 'A':
-                $surveys = Survey::orderby('checked_at', 'asc')->orderby('created_at', 'asc')->get();
+                $surveys = Survey::orderby('checked_at', 'asc')->orderby('created_at', 'desc')->get();
                 $role = 'Admin';
                 $showDeleteButton = true;
                 break;
@@ -33,12 +33,12 @@ class SurveyController extends Controller
                 foreach($patients as $patient){
                     $surveys = $surveys->merge($patient->surveys()->get());
                 }*/
-                $surveys = User::currentUser()->first()->ownUsers()->surveys()->orderby('checked_at', 'asc')->orderby('created_at', 'asc')->get();
+                $surveys = User::currentUser()->first()->ownUsers()->surveys()->orderby('checked_at', 'asc')->orderby('created_at', 'desc')->get();
                 $role = 'Pediatrician';
                 break;
             case 'U':
             default: 
-                $surveys = User::currentUser()->first()->surveys()->orderby('checked_at', 'asc')->orderby('created_at', 'asc')->get();
+                $surveys = User::currentUser()->first()->surveys()->orderby('checked_at', 'asc')->orderby('created_at', 'desc')->get();
                 $showDeleteButton = true;
                 $role = 'User';
                 break;
