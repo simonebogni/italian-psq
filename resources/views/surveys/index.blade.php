@@ -52,6 +52,11 @@
               </tr>
             </thead>
             <tbody>
+                @if ($surveys->count() == 0)
+                <tr>
+                    <td colspan="6">{{__('No surveys to display.')}}</td>
+                </tr>
+                @endif
                 @foreach($surveys as $survey)
                 <tr class="@if($survey->score()>=0.33) table-danger @endif @if($survey->score()>=0.25 && $survey->score()<0.33) table-warning @endif">
                     <td class="align-middle">{{$survey->user->name}}</td>
@@ -73,6 +78,16 @@
                 @endforeach
             </tbody>
         </table>
+        <div class="row">
+            <div class="col">
+                {{ $surveys->links() }}
+            </div>
+            <div class="col">
+                <p class="text-center text-primary">
+                    {{__('Displaying')}} {{$surveys->count()}} {{__('survey(s) out of')}} {{ $surveys->total() }}.
+                </p>
+            </div>
+        </div>
         @if ($showDeleteButton)
             @foreach ($surveys as $survey)
             <div class="modal fade" id="{{"modalDelete".$survey->id}}" tabindex="-1" role="dialog" aria-labelledby="{{"modelDeleteLabel".$survey->id}}" aria-hidden="true">

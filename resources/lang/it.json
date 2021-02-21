@@ -43,5 +43,9 @@
     "Details": "Dettagli",
     "Close": "Chiudi",
     "Confirm survey deletion": "Conferma cancellazione questionario",
-    "Are you sure you want to delete the survey?": "Sei sicuro di voler eliminare il questionario?"
+    "Are you sure you want to delete the survey?": "Sei sicuro di voler eliminare il questionario?",
+    "No surveys to display.": "Non ci sono sondaggi da mostrare.",
+    "Displaying": "Mostrati",
+    "survey(s) out of": "questionari(o) su"
+
 }

@@ -17,33 +17,34 @@ class SurveyController extends Controller
     public function index()
     {
         $user = auth()->user();
-        $surveys = null;
+        $surveys = compact([]);
         $showDeleteButton = false;
         switch($user->role){
             case 'A':
-                $surveys = Survey::get()->all();
+                $surveys = Survey::orderby('checked_at', 'asc')->orderby('created_at', 'asc')->get();
                 $role = 'Admin';
                 $showDeleteButton = true;
                 break;
             case 'P':
-                $patients = User::currentUser()->get()->first()->ownUsers()->get()->all();
-                $surveys = [];
+                /*$patients = User::currentUser()->first()->ownUsers()->get();
+                $surveys = collect([]);
                 foreach($patients as $patient){
-                    $surveys = array_merge($surveys, $patient->surveys()->get()->all());
-                }
+                    $surveys = $surveys->merge($patient->surveys()->get());
+                }*/
+                $surveys = User::currentUser()->first()->ownUsers()->surveys()->orderby('checked_at', 'asc')->orderby('created_at', 'asc')->get();
                 $role = 'Pediatrician';
                 break;
             case 'U':
             default: 
-                $surveys = User::currentUser()->get()->first()->surveys()->get()->all();
+                $surveys = User::currentUser()->first()->surveys()->orderby('checked_at', 'asc')->orderby('created_at', 'asc')->get();
                 $showDeleteButton = true;
                 $role = 'User';
                 break;
         }
-        usort($surveys, function($a, $b) {return strcmp($b->created_at, $a->created_at);});
+        //usort($surveys, function($a, $b) {return strcmp($b->created_at, $a->created_at);});
         return view('surveys.index', [
             'role'=>$role,
-            'surveys'=> $surveys,
+            'surveys'=> $surveys->paginate(10),
             'showDeleteButton' => $showDeleteButton
         ]);
     }
