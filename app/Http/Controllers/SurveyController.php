@@ -6,6 +6,8 @@ use App\Models\Survey;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
 
 class SurveyController extends Controller
 {
@@ -41,10 +43,17 @@ class SurveyController extends Controller
                 $role = 'User';
                 break;
         }
+        $totalGroup = count($surveys);
+        $perPage = 10;
+        $page = Paginator::resolveCurrentPage('page');
+        $surveys = new LengthAwarePaginator($surveys->forPage($page, $perPage), $totalGroup, $perPage, $page, [
+            'path' => Paginator::resolveCurrentPath(),
+            'pageName' => 'page',
+        ]);
         //usort($surveys, function($a, $b) {return strcmp($b->created_at, $a->created_at);});
         return view('surveys.index', [
             'role'=>$role,
-            'surveys'=> $surveys->paginate(10),
+            'surveys'=> $surveys,
             'showDeleteButton' => $showDeleteButton
         ]);
     }
