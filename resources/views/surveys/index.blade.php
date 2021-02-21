@@ -43,11 +43,11 @@
         class="table table-hover table-striped">
             <thead>
               <tr>
-                <th data-sortable="true">{{__('Patient')}}</th>
-                <th data-sortable="true">{{__('E-mail Address')}}</th>
-                <th data-sortable="true">{{__('Score')}}</th>
-                <th data-sortable="true">{{__('Creation date')}}</th>
-                <th data-sortable="true">{{__('Check date')}}</th>
+                <th class="align-middle" data-sortable="true">{{__('Patient')}}</th>
+                <th class="align-middle" data-sortable="true">{{__('E-mail Address')}}</th>
+                <th class="align-middle text-center" data-sortable="true">{{__('Score')}}</th>
+                <th class="align-middle text-center" data-sortable="true">{{__('Creation date')}}</th>
+                <th class="align-middle text-center" data-sortable="true">{{__('Check date')}}</th>
                 <th>{{__('Actions')}}</th>
               </tr>
             </thead>
