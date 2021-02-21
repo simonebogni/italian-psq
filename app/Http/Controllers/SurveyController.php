@@ -189,9 +189,9 @@ class SurveyController extends Controller
         }
         if($authorized){
             $survey->delete();
-            return redirect(route('surveys.index'))->with('success', __('Survey deleted!'));
+            return redirect(route('surveys'))->with('success', __('Survey deleted!'));
         }
-        return redirect(route('surveys.index'))->with('fail', __('You don\'t have the right privileges!'));
+        return redirect(route('surveys'))->with('fail', __('You don\'t have the right privileges!'));
     }
 
     public function setChecked(Survey $survey){

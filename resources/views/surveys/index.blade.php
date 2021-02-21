@@ -60,12 +60,12 @@
                     <td>{{$survey->created_at}}</td>
                     <td>{{$survey->checked_at == null ? "-" : $survey->checked_at->format('d/m/Y')}}</td>
                     <td>
-                        <a class="btn btn-outline-danger btn-block" href="/surveys/{{$survey->id}}">{{__('Details')}}</a>
+                        <a class="btn btn-outline-primary btn-block mt-2" href="/surveys/{{$survey->id}}">{{__('Details')}}</a>
                         @if($showDeleteButton)
                         <form action="{{route('surveys.destroy', [$survey])}}" method="POST">
                             @method('DELETE')
                             @csrf
-                            <button class="btn btn-danger btn-block" data-toggle="modal" data-target="{{"#modalDelete".$survey->id}}">{{__('Delete')}}</button>
+                            <button class="btn btn-danger btn-block mt-2" data-toggle="modal" data-target="{{"#modalDelete".$survey->id}}">{{__('Delete')}}</button>
                         </form>
                         @endif
                     </td>
