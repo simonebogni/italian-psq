@@ -80,12 +80,16 @@
         </table>
         <div class="row">
             <div class="col">
-                {{ $surveys->links('pagination::bootstrap-4') }}
+                <div class="align-middle">
+                    {{ $surveys->links('pagination::bootstrap-4') }}
+                </div>
             </div>
             <div class="col">
-                <p class="text-center text-primary">
-                    {{__('Displaying')}} {{$surveys->count()}} {{__('survey(s) out of')}} {{ $surveys->total() }}.
-                </p>
+                <div class="align-middle">
+                    <p class="text-right text-primary">
+                        {{__('Displaying')}} {{$surveys->count()}} {{__('survey(s) out of')}} {{ $surveys->total() }}.
+                    </p>
+                </div>
             </div>
         </div>
         @if ($showDeleteButton)
