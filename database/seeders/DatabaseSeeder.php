@@ -51,7 +51,7 @@ class DatabaseSeeder extends Seeder
             ])->count(1)->create();
         \App\Models\User::factory(['user_id'=>1])->count(4)->create();
         \App\Models\User::factory(['user_id'=>2])->count(6)->create();
-        \App\Models\Survey::factory(['user_id'=>3])->count(3)->create();
+        \App\Models\Survey::factory(['user_id'=>3])->count(13)->create();
         \App\Models\Survey::factory(['user_id'=>7])->count(1)->create();
         \App\Models\Survey::factory(['user_id'=>8])->count(2)->create();
         \App\Models\User::factory([
