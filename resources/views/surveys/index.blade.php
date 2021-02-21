@@ -48,7 +48,7 @@
                 <th class="align-middle text-center" data-sortable="true">{{__('Score')}}</th>
                 <th class="align-middle text-center" data-sortable="true">{{__('Creation date')}}</th>
                 <th class="align-middle text-center" data-sortable="true">{{__('Check date')}}</th>
-                <th>{{__('Actions')}}</th>
+                <th class="align-middle text-center">{{__('Actions')}}</th>
               </tr>
             </thead>
             <tbody>
