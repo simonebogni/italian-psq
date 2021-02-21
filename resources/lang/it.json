@@ -28,11 +28,20 @@
     "Admin": "Amministratore",
     "Name": "Nome",
     "Role": "Ruolo",
+    "Score": "Punteggio",
+    "Creation date": "Data creazione",
+    "Check date": "Data controllo",
+    "Actions": "Azioni",
     "Survey checked!": "Questionario segnato come controllato!",
     "You don't have the right privileges!": "Non hai i privilegi necessari!",
     "Mark as checked": "Indica come controllato",
     "My profile": "Il mio profilo",
     "Latest password change date": "Ultima data di cambio password",
     "User details": "Dettagli utente",
-    "Password not yet changed": "Password non ancora cambiata"
+    "Password not yet changed": "Password non ancora cambiata",
+    "Delete": "Elimina",
+    "Details": "Dettagli",
+    "Close": "Chiudi",
+    "Confirm survey deletion": "Conferma cancellazione questionario",
+    "Are you sure you want to delete the survey?": "Sei sicuro di voler eliminare il questionario?"
 }

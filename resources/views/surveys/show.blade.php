@@ -1,21 +1,20 @@
 @extends('layouts.base')
 @section('main-content')
-<div class="container">
     @if (\Session::has('fail'))
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
         <strong>{!! \Session::get('fail') !!}</strong>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+            <span aria-hidden="true">&times;</span>
         </button>
-      </div>   
+        </div>   
     @endif
     @if (\Session::has('success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         <strong>{!! \Session::get('success') !!}</strong>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+            <span aria-hidden="true">&times;</span>
         </button>
-      </div>   
+        </div>   
     @endif
     <h2 class="h2 underlinedElement">Dettagli paziente</h2>
     <div class="row">
@@ -76,12 +75,41 @@
             </table>
         </div>
     </div>
-    @if ($showButton)    
+    @if ($showCheckButton)    
     <div class="row">
         <div class="col col-sm-6 offset-sm-6 col-md-4 offset-md-8 col-lg-3 offset-lg-9">
             <a class="btn btn-block btn-primary" role="button" href="/surveys/{{$survey->id}}/setChecked">{{__("Mark as checked")}}</a>
         </div>
     </div>
     @endif
-</div>
+    @if ($showDeleteButton)    
+    <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="modalDeleteLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalDeleteLabel">{{__('Confirm survey deletion')}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>{{__('Are you sure you want to delete the survey?')}}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Close')}}</button>
+                    <form action="{{route('surveys.destroy', [$survey])}}" method="POST">
+                        @method('DELETE')
+                        @csrf
+                        <button type="submit" class="btn btn-danger">{{__('Delete')}}</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col col-sm-6 offset-sm-6 col-md-4 offset-md-8 col-lg-3 offset-lg-9">
+            <button class="btn btn-danger btn-block" data-toggle="modal" data-target="#modalDelete">{{__('Delete')}}</button>
+        </div>
+    </div>
+    @endif
 @endsection

@@ -7,9 +7,22 @@
 <script src="https://unpkg.com/bootstrap-table@1.18.1/dist/bootstrap-table.min.js"></script>
 @endsection
 @section('main-content')
-    <div>
-        <p>{{$role}} - {{auth()->user()->name}}</p>
-    </div>
+    @if (\Session::has('fail'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>{!! \Session::get('fail') !!}</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>   
+    @endif
+    @if (\Session::has('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>{!! \Session::get('success') !!}</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>   
+    @endif
     <h1 class="h1 text-primary">
         @if ($role === 'Admin')
             Tutti i questionari
@@ -30,11 +43,12 @@
         class="table table-hover table-striped">
             <thead>
               <tr>
-                <th data-sortable="true">Paziente</th>
-                <th data-sortable="true">Email</th>
-                <th data-sortable="true">Punteggio</th>
-                <th data-sortable="true">Data</th>
-                <th>Azioni</th>
+                <th data-sortable="true">{{__('Patient')}}</th>
+                <th data-sortable="true">{{__('E-mail Address')}}</th>
+                <th data-sortable="true">{{__('Score')}}</th>
+                <th data-sortable="true">{{__('Creation date')}}</th>
+                <th data-sortable="true">{{__('Check date')}}</th>
+                <th>{{__('Actions')}}</th>
               </tr>
             </thead>
             <tbody>
@@ -44,10 +58,47 @@
                     <td>{{$survey->user->email}}</td>
                     <td>{{$survey->score()}}</td>
                     <td>{{$survey->created_at}}</td>
-                    <td><a href="/surveys/{{$survey->id}}" class="text-primary">Dettagli</a></td>
+                    <td>{{$survey->checked_at == null ? $survey->checked_at->format('d/m/Y') : "-"}}</td>
+                    <td>
+                        <a class="btn btn-outline-danger btn-block" href="/surveys/{{$survey->id}}">{{__('Details')}}</a>
+                        @if($showDeleteButton)
+                        <form action="{{route('surveys.destroy', [$survey])}}" method="POST">
+                            @method('DELETE')
+                            @csrf
+                            <button class="btn btn-danger btn-block" data-toggle="modal" data-target="{{"#modalDelete".$survey->id}}">{{__('Delete')}}</button>
+                        </form>
+                        @endif
+                    </td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
+        @if ($showDeleteButton)
+            @foreach ($surveys as $survey)
+            <div class="modal fade" id="{{"modalDelete".$survey->id}}" tabindex="-1" role="dialog" aria-labelledby="{{"modelDeleteLabel".$survey->id}}" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="{{"modelDeleteLabel".$survey->id}}">{{__('Confirm survey deletion')}}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>{{__('Are you sure you want to delete the survey?')}}</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Close')}}</button>
+                            <form action="{{route('surveys.destroy', [$survey])}}" method="POST">
+                                @method('DELETE')
+                                @csrf
+                                <button type="submit" class="btn btn-danger">{{__('Delete')}}</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        @endif
     </div>
 @endsection

@@ -18,10 +18,12 @@ class SurveyController extends Controller
     {
         $user = auth()->user();
         $surveys = null;
+        $showDeleteButton = false;
         switch($user->role){
             case 'A':
                 $surveys = Survey::get()->all();
                 $role = 'Admin';
+                $showDeleteButton = true;
                 break;
             case 'P':
                 $patients = User::currentUser()->get()->first()->ownUsers()->get()->all();
@@ -34,13 +36,15 @@ class SurveyController extends Controller
             case 'U':
             default: 
                 $surveys = User::currentUser()->get()->first()->surveys()->get()->all();
+                $showDeleteButton = true;
                 $role = 'User';
                 break;
         }
         usort($surveys, function($a, $b) {return strcmp($b->created_at, $a->created_at);});
         return view('surveys.index', [
             'role'=>$role,
-            'surveys'=> $surveys
+            'surveys'=> $surveys,
+            'showDeleteButton' => $showDeleteButton
         ]);
     }
 
@@ -105,30 +109,34 @@ class SurveyController extends Controller
     {
         //visible only to admins, owner and its pediatrician
         $loggedUser = auth()->user();
-        $surveyOwner = $survey->user()->get()->first();
+        $surveyOwner = $survey->user;
         $authorized = false;
-        $showButton = false;
+        $showCheckButton = false;
+        $showDeleteButton = false;
         switch ($loggedUser->role) {
             case 'A':
                 $authorized = true;
-                $showButton = true;
+                $showCheckButton = true;
+                $showDeleteButton = true;
                 break;
             case 'P':
-                if($loggedUser->id == $surveyOwner->ownPediatrician()->get()->first()->id){
+                if($loggedUser->id == $surveyOwner->ownPediatrician->id){
                     $authorized = true;
                     if($survey->checked_at == null){
-                        $showButton = true;
+                        $showCheckButton = true;
                     }
                 }
                 break;
             default:
                 if($loggedUser->id == $surveyOwner->id){
                     $authorized = true;
+                    $showCheckButton = true;
+                    $showDeleteButton = true;
                 }
                 break;
         }
         if($authorized){
-            return view('surveys.show', ["survey" =>$survey, "questionArray" => $survey->toQuestionArray(), "showButton" => $showButton]);
+            return view('surveys.show', ["survey" =>$survey, "questionArray" => $survey->toQuestionArray(), "showCheckButton" => $showCheckButton, "showDeleteButton"=>$showDeleteButton]);
         }
         abort(401, __("You don't have the right privileges!"));
     }
@@ -165,6 +173,25 @@ class SurveyController extends Controller
     public function destroy(Survey $survey)
     {
         //
+        $authorized = false;
+        $loggedUser = auth()->user();
+        switch($loggedUser->role){
+            case 'A':
+                $authorized = true;
+                break;
+            case 'U':
+                if($survey->user->id == $loggedUser->id){
+                    $authorized = true;
+                }
+                break;
+            default:
+                break;
+        }
+        if($authorized){
+            $survey->delete();
+            return redirect(route('surveys.index'))->with('success', __('Survey deleted!'));
+        }
+        return redirect(route('surveys.index'))->with('fail', __('You don\'t have the right privileges!'));
     }
 
     public function setChecked(Survey $survey){
