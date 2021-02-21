@@ -80,7 +80,7 @@
         </table>
         <div class="row">
             <div class="col">
-                {{ $surveys->links() }}
+                {{ $surveys->links('pagination::bootstrap-4') }}
             </div>
             <div class="col">
                 <p class="text-center text-primary">
