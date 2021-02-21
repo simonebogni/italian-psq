@@ -130,7 +130,6 @@ class SurveyController extends Controller
             default:
                 if($loggedUser->id == $surveyOwner->id){
                     $authorized = true;
-                    $showCheckButton = true;
                     $showDeleteButton = true;
                 }
                 break;
