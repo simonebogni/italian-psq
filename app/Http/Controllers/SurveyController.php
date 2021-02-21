@@ -117,6 +117,8 @@ class SurveyController extends Controller
      */
     public function show(Survey $survey)
     {
+        dd(["survey"=> $survey,
+        "array"=>$survey->toQuestionArray()]);
         //visible only to admins, owner and its pediatrician
         $loggedUser = auth()->user();
         $surveyOwner = $survey->user;
