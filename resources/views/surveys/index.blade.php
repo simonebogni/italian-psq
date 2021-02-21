@@ -58,7 +58,7 @@
                     <td>{{$survey->user->email}}</td>
                     <td>{{$survey->score()}}</td>
                     <td>{{$survey->created_at}}</td>
-                    <td>{{$survey->checked_at == null ? $survey->checked_at->format('d/m/Y') : "-"}}</td>
+                    <td>{{$survey->checked_at == null ? "-" : $survey->checked_at->format('d/m/Y')}}</td>
                     <td>
                         <a class="btn btn-outline-danger btn-block" href="/surveys/{{$survey->id}}">{{__('Details')}}</a>
                         @if($showDeleteButton)
