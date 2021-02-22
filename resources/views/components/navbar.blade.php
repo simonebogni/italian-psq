@@ -39,9 +39,11 @@
                     Questionari @if (Request::is('surveys*'))<span class="sr-only">(corrente)</span>@endif
                 </a>
                 <div class="dropdown-menu text-primary" aria-labelledby="navbarDropdownSurveys" id="dropdown-survey">
+                    @if (auth()->user()->role != 'P')  
                     <a class="dropdown-item text-primary @if (Request::is('surveys/create')) active @endif" href="{{ route('surveys.create') }}">
                         <i class="fas fa-edit"></i> Nuovo questionario
                     </a>
+                    @endif
                     <a class="dropdown-item text-primary @if (Request::is('surveys')) active @endif" href="{{ route('surveys') }}">
                         <i class="far fa-eye"></i> Vedi questionari
                     </a>

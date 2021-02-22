@@ -66,11 +66,13 @@ class SurveyController extends Controller
     public function create()
     {
         $user = auth()->user();
-
-        return view('surveys.create', [
-            'loggedUser' => $user,
-            'questionArray' => Survey::$questionArrayInCouples
-        ]);
+        if($user->role != 'P'){
+            return view('surveys.create', [
+                'loggedUser' => $user,
+                'questionArray' => Survey::$questionArrayInCouples
+            ]);
+        }
+        abort(401, __("You don't have the right privileges!"));
     }
 
     /**
@@ -80,33 +82,38 @@ class SurveyController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   $survey = new Survey;
-        $survey->user_id = auth()->user()->id;
-        $survey->sleep_snore_half = (request('sleep_snore_half') === 'null' ? null : (request('sleep_snore_half') === 'true'));
-        $survey->sleep_snore_always = (request('sleep_snore_always') === 'null' ? null : (request('sleep_snore_always') === 'true'));
-        $survey->sleep_snore_heavily = (request('sleep_snore_heavily') === 'null' ? null : (request('sleep_snore_heavily') === 'true'));
-        $survey->sleep_breath_loudly = (request('sleep_breath_loudly') === 'null' ? null : (request('sleep_breath_loudly') === 'true'));
-        $survey->sleep_breath_difficulty = (request('sleep_breath_difficulty') === 'null' ? null : (request('sleep_breath_difficulty') === 'true'));
-        $survey->sleep_breath_pause = (request('sleep_breath_pause') === 'null' ? null : (request('sleep_breath_pause') === 'true'));
-        $survey->breath_mouth_open = (request('breath_mouth_open') === 'null' ? null : (request('breath_mouth_open') === 'true'));
-        $survey->morning_dry_mouth = (request('morning_dry_mouth') === 'null' ? null : (request('morning_dry_mouth') === 'true'));
-        $survey->wet_bed = (request('wet_bed') === 'null' ? null : (request('wet_bed') === 'true'));
-        $survey->wake_not_rested = (request('wake_not_rested') === 'null' ? null : (request('wake_not_rested') === 'true'));
-        $survey->day_drowsiness = (request('day_drowsiness') === 'null' ? null : (request('day_drowsiness') === 'true'));
-        $survey->teacher_drowsiness = (request('teacher_drowsiness') === 'null' ? null : (request('teacher_drowsiness') === 'true'));
-        $survey->morning_wake_difficulty = (request('morning_wake_difficulty') === 'null' ? null : (request('morning_wake_difficulty') === 'true'));
-        $survey->morning_headache = (request('morning_headache') === 'null' ? null : (request('morning_headache') === 'true'));
-        $survey->stopped_growing = (request('stopped_growing') === 'null' ? null : (request('stopped_growing') === 'true'));
-        $survey->overweight = (request('overweight') === 'null' ? null : (request('overweight') === 'true'));
-        $survey->not_listening = (request('not_listening') === 'null' ? null : (request('not_listening') === 'true'));
-        $survey->organising_tasks_difficulty = (request('organising_tasks_difficulty') === 'null' ? null : (request('organising_tasks_difficulty') === 'true'));
-        $survey->easily_distracted = (request('easily_distracted') === 'null' ? null : (request('easily_distracted') === 'true'));
-        $survey->agitate_when_sit = (request('agitate_when_sit') === 'null' ? null : (request('agitate_when_sit') === 'true'));
-        $survey->hyperkinetic = (request('hyperkinetic') === 'null' ? null : (request('hyperkinetic') === 'true'));
-        $survey->interrupts_others = (request('interrupts_others') === 'null' ? null : (request('interrupts_others') === 'true'));
-        $survey->save();
+    {   
+        $user = auth()->user();
+        if($user->role != 'P'){
+            $survey = new Survey;
+            $survey->user_id = auth()->user()->id;
+            $survey->sleep_snore_half = (request('sleep_snore_half') === 'null' ? null : (request('sleep_snore_half') === 'true'));
+            $survey->sleep_snore_always = (request('sleep_snore_always') === 'null' ? null : (request('sleep_snore_always') === 'true'));
+            $survey->sleep_snore_heavily = (request('sleep_snore_heavily') === 'null' ? null : (request('sleep_snore_heavily') === 'true'));
+            $survey->sleep_breath_loudly = (request('sleep_breath_loudly') === 'null' ? null : (request('sleep_breath_loudly') === 'true'));
+            $survey->sleep_breath_difficulty = (request('sleep_breath_difficulty') === 'null' ? null : (request('sleep_breath_difficulty') === 'true'));
+            $survey->sleep_breath_pause = (request('sleep_breath_pause') === 'null' ? null : (request('sleep_breath_pause') === 'true'));
+            $survey->breath_mouth_open = (request('breath_mouth_open') === 'null' ? null : (request('breath_mouth_open') === 'true'));
+            $survey->morning_dry_mouth = (request('morning_dry_mouth') === 'null' ? null : (request('morning_dry_mouth') === 'true'));
+            $survey->wet_bed = (request('wet_bed') === 'null' ? null : (request('wet_bed') === 'true'));
+            $survey->wake_not_rested = (request('wake_not_rested') === 'null' ? null : (request('wake_not_rested') === 'true'));
+            $survey->day_drowsiness = (request('day_drowsiness') === 'null' ? null : (request('day_drowsiness') === 'true'));
+            $survey->teacher_drowsiness = (request('teacher_drowsiness') === 'null' ? null : (request('teacher_drowsiness') === 'true'));
+            $survey->morning_wake_difficulty = (request('morning_wake_difficulty') === 'null' ? null : (request('morning_wake_difficulty') === 'true'));
+            $survey->morning_headache = (request('morning_headache') === 'null' ? null : (request('morning_headache') === 'true'));
+            $survey->stopped_growing = (request('stopped_growing') === 'null' ? null : (request('stopped_growing') === 'true'));
+            $survey->overweight = (request('overweight') === 'null' ? null : (request('overweight') === 'true'));
+            $survey->not_listening = (request('not_listening') === 'null' ? null : (request('not_listening') === 'true'));
+            $survey->organising_tasks_difficulty = (request('organising_tasks_difficulty') === 'null' ? null : (request('organising_tasks_difficulty') === 'true'));
+            $survey->easily_distracted = (request('easily_distracted') === 'null' ? null : (request('easily_distracted') === 'true'));
+            $survey->agitate_when_sit = (request('agitate_when_sit') === 'null' ? null : (request('agitate_when_sit') === 'true'));
+            $survey->hyperkinetic = (request('hyperkinetic') === 'null' ? null : (request('hyperkinetic') === 'true'));
+            $survey->interrupts_others = (request('interrupts_others') === 'null' ? null : (request('interrupts_others') === 'true'));
+            $survey->save();
+            return redirect(route('surveys'));
+        }
+        abort(401, __("You don't have the right privileges!"));
 
-        return redirect(route('surveys'));
     }
 
     /**
