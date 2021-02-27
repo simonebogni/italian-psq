@@ -50,7 +50,7 @@
             <fieldset class="form-group">
                 <div class="input-group">
                     <div class="input-group-prepend"><label for="name" class="input-group-text">{{__("Name")}}</label></div>
-                    <input type="text" name="name" id="name" required aria-required="true" placeholder="Cognome Nome" aria-placeholder="Cognome Nome">
+                    <input type="text" class="form-control" name="name" id="name" required aria-required="true" placeholder="Cognome Nome" aria-placeholder="Cognome Nome">
                 </div>
             </fieldset>
         </div>
@@ -58,7 +58,7 @@
             <fieldset class="form-group">
                 <div class="input-group">
                     <div class="input-group-prepend"><label for="email" class="input-group-text">{{__("E-Mail Address")}}</label></div>
-                    <input type="email" name="email" id="email" placeholder="email@example.com" aria-placeholder="email@example.com">
+                    <input type="email" class="form-control" name="email" id="email" placeholder="email@example.com" aria-placeholder="email@example.com">
                 </div>
             </fieldset>
         </div>
@@ -68,7 +68,7 @@
             <fieldset class="form-group">
                 <div class="input-group">
                     <div class="input-group-prepend"><label for="password" class="input-group-text">Password</label></div>
-                    <input type="password" name="password" id="password" required aria-required="true">
+                    <input type="password" class="form-control" name="password" id="password" required aria-required="true">
                 </div>
             </fieldset>
         </div>
@@ -76,7 +76,7 @@
             <fieldset class="form-group">
                 <div class="input-group">
                     <div class="input-group-prepend"><label for="passwordRepeat" class="input-group-text">{{__("Repeat password")}}</label></div>
-                    <input type="password" name="passwordRepeat" id="passwordRepeat">
+                    <input type="password" class="form-control" name="passwordRepeat" id="passwordRepeat">
                 </div>
             </fieldset>
         </div>
@@ -86,7 +86,7 @@
             <fieldset class="form-group">
                 <div class="input-group">
                     <div class="input-group-prepend"><label for="birthDate" class="input-group-text">{{__("Birth date")}}</label></div>
-                    <input type="date" name="birthDate" id="birthDate" required aria-required="true" >
+                    <input type="date" class="form-control" name="birthDate" id="birthDate" required aria-required="true" >
                 </div>
             </fieldset>
         </div>
@@ -94,7 +94,7 @@
             <fieldset class="form-group">
                 <div class="input-group">
                     <div class="input-group-prepend"><label for="fiscalCode" class="input-group-text">{{__("Fiscal code")}}</label></div>
-                    <input type="text" name="fiscalCode" id="fiscalCode" placeholder="ABCXYZ12A34B123B" aria-placeholder="ABCXYZ12A34B123B">
+                    <input type="text" class="form-control" name="fiscalCode" id="fiscalCode" placeholder="ABCXYZ12A34B123B" aria-placeholder="ABCXYZ12A34B123B">
                 </div>
             </fieldset>
         </div>
@@ -104,7 +104,7 @@
             <fieldset class="form-group">
                 <div class="input-group">
                     <div class="input-group-prepend"><label for="phone" class="input-group-text">{{__("Phone number")}}</label></div>
-                    <input type="tel" name="phone" id="phone" required aria-required="true" placeholder="333 0123456789">
+                    <input type="tel" class="form-control" name="phone" id="phone" required aria-required="true" placeholder="333 0123456789">
                 </div>
             </fieldset>
         </div>
