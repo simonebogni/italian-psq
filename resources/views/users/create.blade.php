@@ -3,9 +3,18 @@
 
 <div class="row mt-3">
     <div class="col">
-        <h1 class="h1 text-primary">{{__("User account creation")}}</h1>
+        <h1 class="h1 text-primary text-center">{{__("User account creation")}}</h1>
     </div>
 </div>
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 <form action="{{route('users.store')}}" method="post">
     @csrf
     <div class="row bt-3">
