@@ -42,7 +42,7 @@ class UserController extends Controller
         $roles = [];
         switch (auth()->user()->role) {
             case 'A':
-                $pediatricians = User::get();
+                $pediatricians = User::Pediatricians()->get();
                 $roles = [__("Admin"), __("Pediatrician"), __("Patient")];
                 break;
             case 'P':
