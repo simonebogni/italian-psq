@@ -7,7 +7,7 @@
     </div>
 </div>
 @if ($errors->any())
-{{dd($errors)}}
+{{dd($errors->all())}}
     <div class="alert alert-danger">
         <ul>
             @foreach ($errors->all() as $error)
