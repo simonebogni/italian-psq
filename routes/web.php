@@ -21,6 +21,7 @@ Route::get('/', function () {
 });
 
 Route::get('/users/create', [App\Http\Controllers\UserController::class, 'create'])->name('users.create')->middleware('auth');
+Route::post('/users', [App\Http\Controllers\UserController::class, 'store'])->name('users.store')->middleware('auth');
 Route::get('/users/{user}', [App\Http\Controllers\UserController::class, 'show'])->name('users.show')->middleware('auth');
 Route::get('/users', [App\Http\Controllers\UserController::class, 'index'])->name('users')->middleware('auth');
 

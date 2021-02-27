@@ -26,26 +26,50 @@
                 @endif
             </li>
             @if (auth()->user()->role != 'U')    
-            <li class="nav-item text-center">
+            <li class="nav-item text-center dropdown">
                 @if (Request::is('users*'))
-                <a class="nav-link active" href="{{route('users')}}">{{__('Users')}} <span class="sr-only">(current)</span></a>    
+                <a id="navbarDropdownUsers" class='nav-link dropdown-toggle active' href="#dropdown-users" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{__("Users")}} <span class="sr-only">({{__("current")}})</span>
+                </a>
+                <div class="dropdown-menu text-primary" aria-labelledby="navbarDropdownUsers" id="dropdown-users">
+                    @if (auth()->user()->role != 'P')  
+                    <a class="dropdown-item text-primary @if (Request::is('users/create')) active @endif" href="{{ route('users.create') }}">
+                        <i class="fas fa-edit"></i> {{__("New user")}}
+                    </a>
+                    @endif
+                    <a class="dropdown-item text-primary @if (Request::is('users')) active @endif" href="{{ route('users') }}">
+                        <i class="far fa-eye"></i> {{__("View users")}}
+                    </a>
+                </div>    
                 @else
-                <a class="nav-link" href="{{route('users')}}">{{__('Users')}}</a>       
+                <a id="navbarDropdownUsers" class='nav-link dropdown-toggle' href="#dropdown-users" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{__("Users")}} <span class="sr-only">({{__("current")}})</span>
+                </a>
+                <div class="dropdown-menu text-primary" aria-labelledby="navbarDropdownUsers" id="dropdown-users">
+                    @if (auth()->user()->role != 'P')  
+                    <a class="dropdown-item text-primary" href="{{ route('users.create') }}">
+                        <i class="fas fa-edit"></i> {{__("New user")}}
+                    </a>
+                    @endif
+                    <a class="dropdown-item text-primary" href="{{ route('users') }}">
+                        <i class="far fa-eye"></i> {{__("View users")}}
+                    </a>
+                </div>      
                 @endif
             </li>
             @endif
             <li class="nav-item text-center dropdown">
                 <a id="navbarDropdownSurveys" class='nav-link dropdown-toggle @if (Request::is('surveys*')) active @endif' href="#dropdown-survey" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Questionari @if (Request::is('surveys*'))<span class="sr-only">(corrente)</span>@endif
+                    {{__("Questionari")}} @if (Request::is('surveys*'))<span class="sr-only">({{__("current")}})</span>@endif
                 </a>
                 <div class="dropdown-menu text-primary" aria-labelledby="navbarDropdownSurveys" id="dropdown-survey">
                     @if (auth()->user()->role != 'P')  
                     <a class="dropdown-item text-primary @if (Request::is('surveys/create')) active @endif" href="{{ route('surveys.create') }}">
-                        <i class="fas fa-edit"></i> Nuovo questionario
+                        <i class="fas fa-edit"></i> {{__("New survey")}}
                     </a>
                     @endif
                     <a class="dropdown-item text-primary @if (Request::is('surveys')) active @endif" href="{{ route('surveys') }}">
-                        <i class="far fa-eye"></i> Vedi questionari
+                        <i class="far fa-eye"></i> {{__("View surveys")}}
                     </a>
                 </div>
               </li>
@@ -62,15 +86,6 @@
                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                     @endif
                 </li>
-            @endif
-            @if (Route::has('register'))
-            <li class="nav-item text-center">
-                @if (Request::is('register'))
-                <a class="nav-link active" href="{{ route('register') }}">{{ __('Register') }} <span class="sr-only">(current)</span></a>
-                @else
-                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                @endif
-            </li>
             @endif
             @else
             <li class="nav-item dropdown">
