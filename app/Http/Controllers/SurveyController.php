@@ -28,13 +28,7 @@ class SurveyController extends Controller
                 $showDeleteButton = true;
                 break;
             case 'P':
-                /*$patients = User::currentUser()->first()->ownUsers()->get();
-                $surveys = collect([]);
-                foreach($patients as $patient){
-                    $surveys = $surveys->merge($patient->surveys()->get());
-                }*/
                 $surveys = Survey::join('users', 'surveys.user_id', 'users.id')->where('users.user_id', '=', $user->id)->orderby('surveys.checked_at', 'asc')->orderby('surveys.created_at', 'desc')->get();
-                //$surveys = User::currentUser()->first()->ownUsers()->get()->surveys->orderby('checked_at', 'asc')->orderby('created_at', 'desc')->get();
                 $role = 'Pediatrician';
                 break;
             case 'U':

@@ -22,7 +22,7 @@ class UserController extends Controller
                 $users = User::currentUser()->get()->first()->ownUsers()->get()->all();
                 break;
             default:
-                $users = [];
+                abort(401, __("You don't have the right privileges!"));
                 break;
         }
         
@@ -38,7 +38,25 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $pediatricians = [];
+        $roles = [];
+        switch (auth()->user()->role) {
+            case 'A':
+                $pediatricians = User::get();
+                $roles = [__("Admin"), __("Pediatrician"), __("Patient")];
+                break;
+            case 'P':
+                $pediatricians = User::where('id', '=', auth()->user()->id)->get();
+                $roles = [__("Patient")];
+                break;
+            default:
+                abort(401, __("You don't have the right privileges!"));
+                break;
+        }
+        return view('users.create', [
+            'pediatricians' => $pediatricians,
+            'roles' => $roles
+        ]);
     }
 
     /**
