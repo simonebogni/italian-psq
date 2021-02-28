@@ -43,8 +43,8 @@
                 @endif
                 @foreach($surveys as $survey)
                 <tr class="@if($survey->score()>=0.33) table-danger @endif @if($survey->score()>=0.25 && $survey->score()<0.33) table-warning @endif">
-                    <td class="align-middle">{{$survey->user->name}}</td>
-                    <td class="align-middle">{{$survey->user->email}}</td>
+                    <td class="align-middle">{{$role !== 'Pediatrician' ? $survey->user->name : $survey->user_name}}</td>
+                    <td class="align-middle">{{$role !== 'Pediatrician' ? $survey->user->email : $survey->user_email}}</td>
                     <td class="align-middle text-center">{{$survey->score()}}</td>
                     <td class="align-middle text-center">{{$survey->created_at}}</td>
                     <td class="align-middle text-center">{{$survey->checked_at == null ? "-" : $survey->checked_at->format('d/m/Y')}}</td>

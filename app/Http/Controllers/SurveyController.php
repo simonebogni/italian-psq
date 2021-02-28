@@ -30,7 +30,6 @@ class SurveyController extends Controller
             case 'P':
                 $surveys = Survey::join('users', 'surveys.user_id', 'users.id')->select('surveys.*', 'users.name as user_name', 'users.email as user_email')->where('users.user_id', '=', $user->id)->orderby('surveys.checked_at', 'asc')->orderby('surveys.created_at', 'desc')->get();
                 $role = 'Pediatrician';
-                dd($surveys);
                 break;
             case 'U':
             default: 
