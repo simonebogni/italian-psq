@@ -142,7 +142,7 @@ class UserController extends Controller
                 $edit = true;
                 break;
             case 'P':
-                if($user->ownPediatrician->id == $loggedUser->id){
+                if($user->id == $loggedUser->id || $user->ownPediatrician->id == $loggedUser->id){
                     $authorized = true;
                 }
                 break;
