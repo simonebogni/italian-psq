@@ -62,7 +62,7 @@
     "contain numbers":"contenere dei numeri",
     "contain lowercase letters":"contenere delle lettere minuscole",
     "contain uppercase letters":"contenere delle lettere maiuscole",
-    "contain at least one of the following symbols: @#$%^&-+=()":"contenere almeno un simbolo tra quelli seguenti: @#$%^&-+=()",
+    "contain at least one of the following symbols: !@#$%^&-+=()":"contenere almeno un simbolo tra quelli seguenti: !@#$%^&-+=()",
     "Send": "Invia"
 
 }
