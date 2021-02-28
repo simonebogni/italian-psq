@@ -20,6 +20,22 @@
     <body>
         <x-navbar/>
         <div class="container main-container mb-5 mt-5">
+            @if (\Session::has('fail'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>{!! \Session::get('fail') !!}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>   
+            @endif
+            @if (\Session::has('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>{!! \Session::get('success') !!}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>   
+            @endif
             @yield('main-content')
         </div>
         <footer class="footer fixed-bottom row pt-3">

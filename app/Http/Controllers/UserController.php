@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -79,7 +81,45 @@ class UserController extends Controller
             'fiscalCode' => ['required', 'unique:App\Models\User,fiscal_code', 'regex:/^(?:[A-Z][AEIOU][AEIOUX]|[B-DF-HJ-NP-TV-Z]{2}[A-Z]){2}(?:[\dLMNP-V]{2}(?:[A-EHLMPR-T](?:[04LQ][1-9MNP-V]|[15MR][\dLMNP-V]|[26NS][0-8LMNP-U])|[DHPS][37PT][0L]|[ACELMRT][37PT][01LM]|[AC-EHLMPR-T][26NS][9V])|(?:[02468LNQSU][048LQU]|[13579MPRTV][26NS])B[26NS][9V])(?:[A-MZ][1-9MNP-V][\dLMNP-V]{2}|[A-M][0L](?:[1-9MNP-V][\dLMNP-V]|[0L][1-9MNP-V]))[A-Z]$/i'],
             'phone' => ['required', 'numeric']
         ]);
-        dd($request);
+        $authUserRole = auth()->user()->role;
+        $authorised = false;
+        $user = new User;
+        switch ($authUserRole) {
+            case 'A':
+                $authorised = true;
+                $user->user_id = request('pediatrician') === '0' ? null : request('pediatrician');
+                switch (request('role')) {
+                    case __("Admin"):
+                        $user->role = "A";
+                        break;
+                    case __("Pediatrician"):
+                        $user->role = "P";
+                        break;
+                    default:
+                        $user->role = "U";
+                        break;
+                }
+                break;
+            case 'P':
+                $authorised = true;
+                $user->user_id = auth()->user()->id;
+                $user->role = "U";
+                break;
+            default:
+                # code...
+                break;
+        }
+        if(!$authorised){
+            return redirect(route('dashboard'))->with('fail', __("You don't have the right privileges!"));
+        }
+        $user->name = request('name');
+        $user->email = request('email');
+        $user->password = Hash::make(request('password'));
+        $user->birth_date = request('birthDate');
+        $user->fiscal_code = Str::upper(request('fiscalCode'));
+        $user->phone_number = request('phone');
+        $user->save();
+        return redirect(route('users'))->with('success', __('User created!'));
     }
 
     /**
