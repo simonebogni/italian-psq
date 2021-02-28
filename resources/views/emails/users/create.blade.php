@@ -1,3 +1,5 @@
+@extends('layouts.email')
+@section('main-content')
 <div class="container">
     <div class="row">
         <div class="col">
@@ -13,7 +15,7 @@
     </div>
     <div class="row">
         <div class="col justify-content-center align-items-center">
-            <button class="btn btn-primary">Vai al sito</button>
+            <a role="button" class="btn btn-primary">Vai al sito</a>
         </div>
     </div>
     <div class="row">
@@ -34,3 +36,4 @@
         </div>
     </div>
 </div>
+@endsection

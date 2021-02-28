@@ -32,6 +32,8 @@ class UserCreated extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.users.create');
+        return $this->from('italian.psq@gmail.com')
+        ->subject('Italian PSQ - Creazione utente')
+        ->view('emails.users.create');
     }
 }
