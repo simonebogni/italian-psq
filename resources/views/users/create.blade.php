@@ -108,7 +108,7 @@
         <div class="col-12 col-md-6">
             <fieldset class="form-group">
                 <div class="input-group">
-                    <div class="input-group-prepend"><label for="password" class="input-group-text">Password&nbsp;<button class="btn btn-primary" role="button" data-toggle="popover" data-trigger="focus" title="{{__("Password rules")}}" data-content="{{__("The password must contain between 8 and 20 charaters and must contain numbers, lowercase and uppercase letters and at least one of the following symbols: [@#$%^&-+=()")}}"></button></label></div>
+                    <div class="input-group-prepend"><label for="password" class="input-group-text">Password</label></div>
                     <input type="password" class="form-control" name="password" id="password" required aria-required="true">
                 </div>
             </fieldset>
@@ -120,6 +120,20 @@
                     <input type="password" class="form-control" required aria-required="true" name="password_confirmation" id="password_confirmation">
                 </div>
             </fieldset>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p class="text-center text-primary">{{__("Password rules")}}</p>
+            <p>{{__("The password must")}}:
+                <ul style="list-style: none;">
+                    <li>{{__("contain between 8 and 20 charaters")}}</li>
+                    <li>{{__("contain numbers")}}</li>
+                    <li>{{__("contain lowercase letters")}}</li>
+                    <li>{{__("contain uppercase letters")}}</li>
+                    <li>{{__("contain at least one of the following symbols: @#$%^&-+=()")}}</li>
+                </ul>
+            </p>
         </div>
     </div>
     <div class="row">

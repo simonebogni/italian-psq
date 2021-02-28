@@ -57,7 +57,12 @@
     "None": "Nessuno",
     "Repeat password": "Ripetere la password",
     "Password rules": "Regole per la password",
-    "The password must contain between 8 and 20 charaters and must contain numbers, lowercase and uppercase letters and at least one of the following symbols: [@#$%^&-+=()": "La password deve contenere dagli 8 ai 20 caratteri e deve contenere numeri, lettere minuscole, lettere maiuscole e almeno uno di questi simboli: [@#$%^&-+=()",
+    "The password must":"La password deve",
+    "contain between 8 and 20 charaters":"essere composta dagli 8 ai 20 caratteri",
+    "contain numbers":"contenere dei numeri",
+    "contain lowercase letters":"contenere delle lettere minuscole",
+    "contain uppercase letters":"contenere delle lettere maiuscole",
+    "contain at least one of the following symbols: @#$%^&-+=()":"contenere almeno un simbolo tra quelli seguenti: @#$%^&-+=()",
     "Send": "Invia"
 
 }
