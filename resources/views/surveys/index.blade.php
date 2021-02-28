@@ -46,8 +46,8 @@
                     <td class="align-middle">{{$role !== 'Pediatrician' ? $survey->user->name : $survey->user_name}}</td>
                     <td class="align-middle">{{$role !== 'Pediatrician' ? $survey->user->email : $survey->user_email}}</td>
                     <td class="align-middle text-center">{{$survey->score()}}</td>
-                    <td class="align-middle text-center">{{$survey->created_at}}</td>
-                    <td class="align-middle text-center">{{$survey->checked_at == null ? "-" : $survey->checked_at->format('d/m/Y')}}</td>
+                    <td class="align-middle text-center">{{$survey->created_at->format('d/m/Y HH:mm:ss')}}</td>
+                    <td class="align-middle text-center">{{$survey->checked_at == null ? "-" : $survey->checked_at->format('d/m/Y HH:mm:ss')}}</td>
                     <td class="align-middle">
                         <a class="btn btn-outline-primary btn-block mt-2" href="/surveys/{{$survey->id}}">{{__('Details')}}</a>
                         @if($showDeleteButton)

@@ -19,13 +19,13 @@
     <h2 class="h2 underlinedElement mt-5">Questionario</h2>
     <div class="row">
         <div class="col">
-            Data compilazione - <span style="font-weight: bold" class="text-primary">{{$survey->created_at->format('d/m/Y')}}</span>
+            Data compilazione - <span style="font-weight: bold" class="text-primary">{{$survey->created_at->format('d/m/Y HH:mm:ss')}}</span>
             <br>
             Domande con risposta - <span style="font-weight: bold" class="text-primary">{{$survey->numberOfAnswers()}}</span>
             <br>
             Punteggio - <span style="font-weight: bold" class="text-primary">{{$survey->score()}}</span>
             <br>
-            Data controllo - <span style="font-weight: bold" class="text-primary">{{$survey->checked_at == null ? "Non ancora controllato" : $survey->checked_at->format('d/m/Y')}}</span>
+            Data controllo - <span style="font-weight: bold" class="text-primary">{{$survey->checked_at == null ? "Non ancora controllato" : $survey->checked_at->format('d/m/Y HH:mm:ss')}}</span>
         </div>
     </div>
     <div class="row mt-4">
