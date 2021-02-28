@@ -8,7 +8,7 @@
 </div>
 @if ($errors->any())
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <ul>
+        <ul style="list-style-type: none;" class="mt-3">
             @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>
             @endforeach
@@ -70,7 +70,7 @@
             <fieldset class="form-group">
                 <div class="input-group">
                     <div class="input-group-prepend"><label for="email" class="input-group-text">{{__("E-Mail Address")}}</label></div>
-                    <input type="email" class="form-control" name="email" id="email" placeholder="email@example.com" aria-placeholder="email@example.com">
+                    <input type="email" class="form-control" required aria-required="true" name="email" id="email" placeholder="email@example.com" aria-placeholder="email@example.com">
                 </div>
             </fieldset>
         </div>
@@ -87,8 +87,8 @@
         <div class="col col-md-6">
             <fieldset class="form-group">
                 <div class="input-group">
-                    <div class="input-group-prepend"><label for="passwordRepeat" class="input-group-text">{{__("Repeat password")}}</label></div>
-                    <input type="password" class="form-control" name="passwordRepeat" id="passwordRepeat">
+                    <div class="input-group-prepend"><label for="password_confirmation" class="input-group-text">{{__("Repeat password")}}</label></div>
+                    <input type="password" class="form-control" required aria-required="true" name="password_confirmation" id="password_confirmation">
                 </div>
             </fieldset>
         </div>
@@ -106,7 +106,7 @@
             <fieldset class="form-group">
                 <div class="input-group">
                     <div class="input-group-prepend"><label for="fiscalCode" class="input-group-text">{{__("Fiscal code")}}</label></div>
-                    <input type="text" class="form-control" name="fiscalCode" id="fiscalCode" placeholder="ABCXYZ12A34B123B" aria-placeholder="ABCXYZ12A34B123B">
+                    <input type="text" class="form-control" name="fiscalCode" id="fiscalCode" required aria-required="true" placeholder="ABCXYZ12A34B123B" aria-placeholder="ABCXYZ12A34B123B">
                 </div>
             </fieldset>
         </div>

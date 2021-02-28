@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Support\Str;
 return [
 
     /*
@@ -147,6 +147,14 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'pediatrician' => Str::lower(__("Pediatrician")),
+        'role' => Str::lower(__("Role")),
+        'name' => Str::lower(__("Name")),
+        'email' => Str::lower(__("E-Mail Address")),
+        'birthDate' => Str::lower(__("Birth date")),
+        'phone' => Str::lower(__("Phone number")),
+        'fiscalCode' => Str::lower(__("Fiscal code")),
+    ],
 
 ];
