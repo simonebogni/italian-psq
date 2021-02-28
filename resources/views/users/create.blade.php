@@ -25,6 +25,26 @@
             <fieldset class="form-group">
                 <div class="input-group">
                     <div class="input-group-prepend"><label for="pediatrician" class="input-group-text">{{__("Pediatrician")}}</label></div>
+                    @if (old('pediatrician') != null)
+                    <select name="pediatrician" id="pediatrician" class="custom-select" required aria-required="true">
+                        @if ($userRole == 'A')
+                            <option value="0" @if (old('pediatrician') == "0")
+                                selected
+                            @endif>{{__("None")}}</option>
+                            @foreach ($pediatricians as $index => $pediatrician)
+                            <option value="{{$pediatrician->id}}" @if (old('pediatrician') == $pediatrician->id)
+                                selected
+                            @endif>{{$pediatrician->name}} - {{$pediatrician->fiscal_code}}</option>
+                            @endforeach
+                        @else    
+                            @foreach ($pediatricians as $index => $pediatrician)
+                            <option value="{{$pediatrician->id}}" @if (old('pediatrician') == $pediatrician->id)
+                                selected
+                            @endif>{{$pediatrician->name}} - {{$pediatrician->fiscal_code}}</option>
+                            @endforeach
+                        @endif
+                    </select>
+                    @else    
                     <select name="pediatrician" id="pediatrician" class="custom-select" required aria-required="true">
                         @if ($userRole == 'A')
                             <option value="0" selected>{{__("None")}}</option>
@@ -39,6 +59,7 @@
                             @endforeach
                         @endif
                     </select>
+                    @endif
                 </div>
             </fieldset>
         </div>
@@ -47,11 +68,19 @@
                 <div class="input-group">
                     <div class="input-group-prepend"><label for="role" class="input-group-text">{{__("Role")}}</label></div>
                     <select name="role" id="role" class="custom-select" required aria-required="true">
-                        @foreach ($roles as $index => $role)
-                        <option value="{{$role}}" @if ($index == 0)
-                            selected
-                        @endif>{{$role}}</option>
-                        @endforeach
+                        @if (old('role') != null)
+                            @foreach ($roles as $index => $role)
+                            <option value="{{$role}}" @if (old('role') == $role)
+                                selected
+                            @endif>{{$role}}</option>
+                            @endforeach
+                        @else    
+                            @foreach ($roles as $index => $role)
+                            <option value="{{$role}}" @if ($index == 0)
+                                selected
+                            @endif>{{$role}}</option>
+                            @endforeach
+                        @endif
                     </select>
                 </div>
             </fieldset>
@@ -62,7 +91,7 @@
             <fieldset class="form-group">
                 <div class="input-group">
                     <div class="input-group-prepend"><label for="name" class="input-group-text">{{__("Name")}}</label></div>
-                    <input type="text" class="form-control" name="name" id="name" required aria-required="true" placeholder="Cognome Nome" aria-placeholder="Cognome Nome">
+                    <input type="text" class="form-control" name="name" value="{{old('name')}}" id="name" required aria-required="true" placeholder="Cognome Nome" aria-placeholder="Cognome Nome">
                 </div>
             </fieldset>
         </div>
@@ -70,7 +99,7 @@
             <fieldset class="form-group">
                 <div class="input-group">
                     <div class="input-group-prepend"><label for="email" class="input-group-text">{{__("E-Mail Address")}}</label></div>
-                    <input type="email" class="form-control" required aria-required="true" name="email" id="email" placeholder="email@example.com" aria-placeholder="email@example.com">
+                    <input type="email" class="form-control" required aria-required="true" name="email" value="{{old('email')}}" id="email" placeholder="email@example.com" aria-placeholder="email@example.com">
                 </div>
             </fieldset>
         </div>
@@ -79,7 +108,7 @@
         <div class="col-12 col-md-6">
             <fieldset class="form-group">
                 <div class="input-group">
-                    <div class="input-group-prepend"><label for="password" class="input-group-text">Password</label></div>
+                    <div class="input-group-prepend"><label for="password" class="input-group-text">Password <a class="fas fa-question-circle" role="button" data-toggle="popover" data-trigger="focus" title="{{__("Password rules")}}" data-content="{{__("The password must contain between 8 and 20 charaters and must contain numbers, lowercase and uppercase letters and at least one of the following symbols: [@#$%^&-+=()")}}"></a></label></div>
                     <input type="password" class="form-control" name="password" id="password" required aria-required="true">
                 </div>
             </fieldset>
@@ -98,7 +127,7 @@
             <fieldset class="form-group">
                 <div class="input-group">
                     <div class="input-group-prepend"><label for="birthDate" class="input-group-text">{{__("Birth date")}}</label></div>
-                    <input type="date" class="form-control" name="birthDate" id="birthDate" required aria-required="true" >
+                    <input type="date" class="form-control" name="birthDate" value="{{old('birthDate')}}" id="birthDate" required aria-required="true" >
                 </div>
             </fieldset>
         </div>
@@ -106,7 +135,7 @@
             <fieldset class="form-group">
                 <div class="input-group">
                     <div class="input-group-prepend"><label for="fiscalCode" class="input-group-text">{{__("Fiscal code")}}</label></div>
-                    <input type="text" class="form-control" name="fiscalCode" id="fiscalCode" required aria-required="true" placeholder="ABCXYZ12A34B123B" aria-placeholder="ABCXYZ12A34B123B">
+                    <input type="text" class="form-control" name="fiscalCode" value="{{old('fiscalCode')}}" id="fiscalCode" required aria-required="true" placeholder="ABCXYZ12A34B123B" aria-placeholder="ABCXYZ12A34B123B" onkeyup="this.value = this.value.toUpperCase();">
                 </div>
             </fieldset>
         </div>
@@ -116,7 +145,7 @@
             <fieldset class="form-group">
                 <div class="input-group">
                     <div class="input-group-prepend"><label for="phone" class="input-group-text">{{__("Phone number")}}</label></div>
-                    <input type="tel" class="form-control" name="phone" id="phone" required aria-required="true" placeholder="333 0123456789">
+                    <input type="tel" class="form-control" name="phone" value="{{old('phone')}}" id="phone" required aria-required="true" placeholder="333 0123456789">
                 </div>
             </fieldset>
         </div>
@@ -132,5 +161,8 @@
         format: 'yyyy-mm-dd',
         autoclose: true
     });
+    $('.popover-dismiss').popover({
+    trigger: 'focus'
+    })
 </script>
 @endsection

@@ -55,6 +55,8 @@
     "New survey": "Nuovo questionario",
     "View surveys": "Visualizza questionari",
     "None": "Nessuno",
-    "Repeat password": "Ripetere la password"
+    "Repeat password": "Ripetere la password",
+    "Password rules": "Regole per la password",
+    "The password must contain between 8 and 20 charaters and must contain numbers, lowercase and uppercase letters and at least one of the following symbols: [@#$%^&-+=()": "La password deve contenere dagli 8 ai 20 caratteri e deve contenere numeri, lettere minuscole, lettere maiuscole e almeno uno di questi simboli: [@#$%^&-+=()"
 
 }
