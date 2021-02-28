@@ -20,7 +20,7 @@
 @endif
 <form action="{{route('users.store')}}" method="post">
     @csrf
-    <div class="row bt-3">
+    <div class="row mt-5">
         <div class="col-sm-12 col-md-6">
             <fieldset class="form-group">
                 <div class="input-group">
@@ -123,20 +123,6 @@
         </div>
     </div>
     <div class="row">
-        <div class="col">
-            <p class="text-center text-primary">{{__("Password rules")}}</p>
-            <p>{{__("The password must")}}:
-                <ul style="list-style: none;">
-                    <li>{{__("contain between 8 and 20 charaters")}}</li>
-                    <li>{{__("contain numbers")}}</li>
-                    <li>{{__("contain lowercase letters")}}</li>
-                    <li>{{__("contain uppercase letters")}}</li>
-                    <li>{{__("contain at least one of the following symbols: @#$%^&-+=()")}}</li>
-                </ul>
-            </p>
-        </div>
-    </div>
-    <div class="row">
         <div class="col-12 col-md-6">
             <fieldset class="form-group">
                 <div class="input-group">
@@ -167,6 +153,20 @@
     <div class="row">
         <div class="col-12 col-md-6 offset-md-6">
             <button type="submit" class="btn btn-primary btn-block">{{__("Send")}}</button>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col">
+            <h2 class="h2 text-center text-primary">{{__("Password rules")}}</h2>
+            <p>{{__("The password must")}}:
+                <ul style="list-style: none;">
+                    <li>{{__("contain between 8 and 20 charaters")}}</li>
+                    <li>{{__("contain numbers")}}</li>
+                    <li>{{__("contain lowercase letters")}}</li>
+                    <li>{{__("contain uppercase letters")}}</li>
+                    <li>{{__("contain at least one of the following symbols: @#$%^&-+=()")}}</li>
+                </ul>
+            </p>
         </div>
     </div>
 </form>
