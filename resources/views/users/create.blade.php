@@ -21,7 +21,7 @@
 <form action="{{route('users.store')}}" method="post">
     @csrf
     <div class="row bt-3">
-        <div class="col col-md-6">
+        <div class="col-sm-12 col-md-6">
             <fieldset class="form-group">
                 <div class="input-group">
                     <div class="input-group-prepend"><label for="pediatrician" class="input-group-text">{{__("Pediatrician")}}</label></div>
@@ -42,7 +42,7 @@
                 </div>
             </fieldset>
         </div>
-        <div class="col col-md-6">
+        <div class="col-12 col-md-6">
             <fieldset class="form-group">
                 <div class="input-group">
                     <div class="input-group-prepend"><label for="role" class="input-group-text">{{__("Role")}}</label></div>
@@ -58,7 +58,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col col-md-6">
+        <div class="col-12 col-md-6">
             <fieldset class="form-group">
                 <div class="input-group">
                     <div class="input-group-prepend"><label for="name" class="input-group-text">{{__("Name")}}</label></div>
@@ -66,7 +66,7 @@
                 </div>
             </fieldset>
         </div>
-        <div class="col col-md-6">
+        <div class="col-12 col-md-6">
             <fieldset class="form-group">
                 <div class="input-group">
                     <div class="input-group-prepend"><label for="email" class="input-group-text">{{__("E-Mail Address")}}</label></div>
@@ -76,7 +76,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col col-md-6">
+        <div class="col-12 col-md-6">
             <fieldset class="form-group">
                 <div class="input-group">
                     <div class="input-group-prepend"><label for="password" class="input-group-text">Password</label></div>
@@ -84,7 +84,7 @@
                 </div>
             </fieldset>
         </div>
-        <div class="col col-md-6">
+        <div class="col-12 col-md-6">
             <fieldset class="form-group">
                 <div class="input-group">
                     <div class="input-group-prepend"><label for="password_confirmation" class="input-group-text">{{__("Repeat password")}}</label></div>
@@ -94,7 +94,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col col-md-6">
+        <div class="col-12 col-md-6">
             <fieldset class="form-group">
                 <div class="input-group">
                     <div class="input-group-prepend"><label for="birthDate" class="input-group-text">{{__("Birth date")}}</label></div>
@@ -102,7 +102,7 @@
                 </div>
             </fieldset>
         </div>
-        <div class="col col-md-6">
+        <div class="col-12 col-md-6">
             <fieldset class="form-group">
                 <div class="input-group">
                     <div class="input-group-prepend"><label for="fiscalCode" class="input-group-text">{{__("Fiscal code")}}</label></div>
@@ -112,7 +112,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col col-md-6">
+        <div class="col-12 col-md-6">
             <fieldset class="form-group">
                 <div class="input-group">
                     <div class="input-group-prepend"><label for="phone" class="input-group-text">{{__("Phone number")}}</label></div>
@@ -122,7 +122,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col col-md-6 offset-md-6">
+        <div class="col-12 col-md-6 offset-md-6">
             <button type="submit" class="btn btn-primary btn-block">Invia</button>
         </div>
     </div>
