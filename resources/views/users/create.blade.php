@@ -152,17 +152,22 @@
     </div>
     <div class="row">
         <div class="col-12 col-md-6 offset-md-6">
-            <button type="submit" class="btn btn-primary btn-block">Invia</button>
+            <button type="submit" class="btn btn-primary btn-block">{{__("Send")}}</button>
         </div>
     </div>
 </form>
+@endsection
+@section('scripts')
 <script>
-    $("#birthDate").datetimepicker({
-        format: 'yyyy-mm-dd',
-        autoclose: true
-    });
-    $('.popover-dismiss').popover({
-    trigger: 'focus'
+    $(function () {
+        $("#birthDate").datetimepicker({
+            format: 'yyyy-mm-dd',
+            autoclose: true
+        });
+        $('[data-toggle="popover"]').popover();
+        $('.popover-dismiss').popover({
+        trigger: 'focus'
+        });
     })
-</script>
+</script> 
 @endsection
