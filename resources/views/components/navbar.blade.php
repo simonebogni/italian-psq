@@ -32,11 +32,9 @@
                     {{__("Users")}} <span class="sr-only">({{__("current")}})</span>
                 </a>
                 <div class="dropdown-menu text-primary" aria-labelledby="navbarDropdownUsers" id="dropdown-users">
-                    @if (auth()->user()->role != 'P')  
                     <a class="dropdown-item text-primary @if (Request::is('users/create')) active @endif" href="{{ route('users.create') }}">
                         <i class="fas fa-edit"></i> {{__("New user")}}
                     </a>
-                    @endif
                     <a class="dropdown-item text-primary @if (Request::is('users')) active @endif" href="{{ route('users') }}">
                         <i class="far fa-eye"></i> {{__("View users")}}
                     </a>
