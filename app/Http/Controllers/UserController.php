@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\UserCreated;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -119,6 +121,7 @@ class UserController extends Controller
         $user->fiscal_code = Str::upper(request('fiscalCode'));
         $user->phone_number = request('phone');
         $user->save();
+        Mail::to($user)->send(new UserCreated($user, request('password')));
         return redirect(route('users'))->with('success', __('User created!'));
     }
 
