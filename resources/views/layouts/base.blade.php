@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="{{ secure_asset('css/app.css') }}">
         
         <!-- Scripts -->
-        <script src="{{ secure_asset('js/app.js') }}" defer></script>
+        <script src="{{ secure_asset('js/app.js') }}"></script>
     </head>
     <body>
         <x-navbar/>
