@@ -27,7 +27,7 @@
                     <div class="input-group-prepend"><label for="pediatrician" class="input-group-text">{{__("Pediatrician")}}</label></div>
                     <select name="pediatrician" id="pediatrician" class="custom-select" required aria-required="true">
                         @if ($userRole == 'A')
-                            <option value="null" selected>{{__("None")}}</option>
+                            <option value="0" selected>{{__("None")}}</option>
                             @foreach ($pediatricians as $index => $pediatrician)
                             <option value="{{$pediatrician->id}}">{{$pediatrician->name}} - {{$pediatrician->fiscal_code}}</option>
                             @endforeach
