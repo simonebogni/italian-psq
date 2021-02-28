@@ -73,7 +73,8 @@ class User extends Authenticatable
 
 
     public function ownUsers(){
-        return User::where('user_id', '=', $this->id);
+        return $this->hasMany('\App\Models\User');
+        //return User::where('user_id', '=', $this->id);
     }
 
     public function surveys(){
