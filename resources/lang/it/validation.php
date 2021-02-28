@@ -92,11 +92,11 @@ return [
     ],
     'multiple_of' => 'Il valore del campo :attribute deve essere un multiplo di :value',
     'not_in' => 'Il valore :attribute non è valido.',
-    'not_regex' => 'Il formato del(la) :attribute non è valido.',
+    'not_regex' => 'Il formato del campo :attribute non è valido.',
     'numeric' => 'Il valore del campo :attribute deve essere un numero.',
     'password' => 'La password non è corretta.',
     'present' => 'Il campo :attribute deve essere presente.',
-    'regex' => 'Il formato del(la) :attribute non è valido.',
+    'regex' => 'Il formato del campo :attribute non è valido.',
     'required' => 'Il campo :attribute è richiesto.',
     'required_if' => 'Il campo :attribute è richiesto quando il valore di :other è :value.',
     'required_unless' => 'Il campo :attribute è richiesto a meno che il valore di :other sia tra :values.',
@@ -116,7 +116,7 @@ return [
     'timezone' => 'Il valore del campo :attribute deve essere un fuso orario valido.',
     'unique' => 'Il valore di :attribute indicato non è disponibile.',
     'uploaded' => 'Non è stato possibile fare l\'upload di :attribute.',
-    'url' => 'Il formato del(la) :attribute non è valido.',
+    'url' => 'Il formato del campo :attribute non è valido.',
     'uuid' => 'Il valore del campo :attribute deve essere un valido UUID.',
 
     /*
