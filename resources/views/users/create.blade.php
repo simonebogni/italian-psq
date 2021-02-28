@@ -108,7 +108,7 @@
         <div class="col-12 col-md-6">
             <fieldset class="form-group">
                 <div class="input-group">
-                    <div class="input-group-prepend"><label for="password" class="input-group-text">Password <a class="fas fa-question-circle" role="button" data-toggle="popover" data-trigger="focus" title="{{__("Password rules")}}" data-content="{{__("The password must contain between 8 and 20 charaters and must contain numbers, lowercase and uppercase letters and at least one of the following symbols: [@#$%^&-+=()")}}"></a></label></div>
+                    <div class="input-group-prepend"><label for="password" class="input-group-text">Password&nbsp;<button class="btn btn-primary" role="button" data-toggle="popover" data-trigger="focus" title="{{__("Password rules")}}" data-content="{{__("The password must contain between 8 and 20 charaters and must contain numbers, lowercase and uppercase letters and at least one of the following symbols: [@#$%^&-+=()")}}"></button></label></div>
                     <input type="password" class="form-control" name="password" id="password" required aria-required="true">
                 </div>
             </fieldset>
