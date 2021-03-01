@@ -136,12 +136,14 @@ class UserController extends Controller
         $authorized = false;
         $edit = false;
         $showDeleteButton = false;
+        $showEditButton = false;
         $loggedUser = auth()->user();
         switch ($loggedUser->role) {
             case 'A':
                 $authorized = true;
                 $edit = true;
                 $showDeleteButton = true;
+                $showEditButton = true;
                 break;
             case 'P':
                 if($user->id == $loggedUser->id || $user->ownPediatrician->id == $loggedUser->id){
@@ -153,11 +155,12 @@ class UserController extends Controller
                     $authorized = true;
                     $edit = true;
                     $showDeleteButton = true;
+                    $showEditButton = true;
                 }
                 break;
         }
         if ($authorized) {
-            return view('users.show', ["user" =>$user, "edit"=>$edit, "showDeleteButton"=>$showDeleteButton]);
+            return view('users.show', ["user" =>$user, "edit"=>$edit, "showDeleteButton"=>$showDeleteButton, "showEditButton"=>$showEditButton]);
         }
         abort(401, __("You don't have the right privileges!"));
     }
