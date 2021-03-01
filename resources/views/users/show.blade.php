@@ -18,7 +18,7 @@
       </div>   
     @endif
     <h2 class="h2 underlinedElement">{{__("User details")}}</h2>
-    <div class="row">
+    <div class="row mt-5">
         <div class="col">
             <p>{{__("Name")}} - <span style="font-weight: bold" class="text-primary">{{$user->name}}</span></p>
             <p>{{__("Role")}} - <span style="font-weight: bold" class="text-primary">{{$user->role == 'A' ? __('Admin') : ($user->role == 'P' ? __('Pediatrician') : __('Patient'))}}</span></p>
