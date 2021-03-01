@@ -32,5 +32,35 @@
             <p>{{__("Phone number")}} - <span style="font-weight: bold" class="text-primary">{{$user->phone_number}}</span></p>
         </div>
     </div>
+    @if ($showDeleteButton)   
+    <div class="row mt-2">
+        <div class="col col-sm-6 offset-sm-6 col-md-4 offset-md-8 col-lg-3 offset-lg-9">
+            <button class="btn btn-danger btn-block" data-toggle="modal" data-target="#modalDelete">{{__('Delete user account')}}</button>
+        </div>
+    </div> 
+    <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="modalDeleteLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalDeleteLabel">{{__('Confirm account deletion')}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>{{__('Are you sure you want to delete the user account?')}}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Close')}}</button>
+                    <form action="{{route('users.destroy', [$user])}}" method="POST">
+                        @method('DELETE')
+                        @csrf
+                        <button type="submit" class="btn btn-danger">{{__('Delete')}}</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
 </div>
 @endsection

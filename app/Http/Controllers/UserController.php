@@ -135,11 +135,13 @@ class UserController extends Controller
     {
         $authorized = false;
         $edit = false;
+        $showDeleteButton = false;
         $loggedUser = auth()->user();
         switch ($loggedUser->role) {
             case 'A':
                 $authorized = true;
                 $edit = true;
+                $showDeleteButton = true;
                 break;
             case 'P':
                 if($user->id == $loggedUser->id || $user->ownPediatrician->id == $loggedUser->id){
@@ -150,11 +152,12 @@ class UserController extends Controller
                 if($user->id == $loggedUser->id){
                     $authorized = true;
                     $edit = true;
+                    $showDeleteButton = true;
                 }
                 break;
         }
         if ($authorized) {
-            return view('users.show', ["user" =>$user, "edit"=>$edit]);
+            return view('users.show', ["user" =>$user, "edit"=>$edit, "showDeleteButton"=>$showDeleteButton]);
         }
         abort(401, __("You don't have the right privileges!"));
     }
@@ -190,6 +193,26 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $authorized = false;
+        $loggedUser = auth()->user();
+        $redirection = route('users');
+        switch($loggedUser->role){
+            case 'A':
+                $authorized = true;
+                break;
+            case 'U':
+                $redirection = route('home');
+                if($user->id == $loggedUser->id){
+                    $authorized = true;
+                }
+                break;
+            default:
+                break;
+        }
+        if($authorized){
+            $user->delete();
+            return redirect($redirection)->with('success', __('Survey deleted!'));
+        }
+        return redirect()->back()->with('fail', __('You don\'t have the right privileges!'));
     }
 }
