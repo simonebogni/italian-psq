@@ -170,7 +170,41 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+
+        $pediatricians = [];
+        $roles = [];
+        $loggedUser = auth()->user();
+        $authorised = false;
+        switch ($loggedUser->role) {
+            case 'A':
+                $authorised = true;
+                $pediatricians = User::Pediatricians()->get();
+                $roles = [__("Patient"), __("Pediatrician"), __("Admin")];
+                break;
+            default:
+                if($loggedUser->id == $user->id){
+                    $authorised = true;
+                    switch ($loggedUser->role) {
+                        case 'P':
+                            $roles = [__("Pediatrician")];
+                            break;
+                        default:
+                            $pediatricians = User::where('id', '=', $user->user_id)->get();
+                            $roles = [__("Patient")];
+                            break;
+                    }
+                }
+            break;
+        }
+        if(!$authorised){
+            abort(401, __("You don't have the right privileges!"));
+        }
+        return view('users.edit', [
+            'user' => $user,
+            'loggedUserRole' => $loggedUser->role,
+            'pediatricians' => $pediatricians,
+            'roles' => $roles
+        ]);
     }
 
     /**
@@ -182,7 +216,58 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $validated = $request->validate([
+            'name' => ['required', 'max:255'],
+            'email' => ['required', 'email', 'unique:App\Models\User,email', 'max:255'],
+            'birthDate' => ['required', 'date'],
+            'fiscalCode' => ['required', 'unique:App\Models\User,fiscal_code', 'regex:/^(?:[A-Z][AEIOU][AEIOUX]|[B-DF-HJ-NP-TV-Z]{2}[A-Z]){2}(?:[\dLMNP-V]{2}(?:[A-EHLMPR-T](?:[04LQ][1-9MNP-V]|[15MR][\dLMNP-V]|[26NS][0-8LMNP-U])|[DHPS][37PT][0L]|[ACELMRT][37PT][01LM]|[AC-EHLMPR-T][26NS][9V])|(?:[02468LNQSU][048LQU]|[13579MPRTV][26NS])B[26NS][9V])(?:[A-MZ][1-9MNP-V][\dLMNP-V]{2}|[A-M][0L](?:[1-9MNP-V][\dLMNP-V]|[0L][1-9MNP-V]))[A-Z]$/i'],
+            'phone' => ['required', 'numeric']
+        ]);
+        $authUserRole = auth()->user()->role;
+        $authorised = false;
+        $user = User::findOrFail($user->id);
+        switch ($authUserRole) {
+            case 'A':
+                $authorised = true;
+                $user->user_id = request('pediatrician') === '0' ? null : request('pediatrician');
+                switch (request('role')) {
+                    case __("Admin"):
+                        $user->role = "A";
+                        break;
+                    case __("Pediatrician"):
+                        $user->role = "P";
+                        break;
+                    default:
+                        $user->role = "U";
+                        break;
+                }
+                break;
+            default:
+                if($user->id == auth()->user()->id){
+                    $authorised = true;
+                }
+                break;
+        }
+        if(!$authorised){
+            return redirect()->back()->with('fail', __("You don't have the right privileges!"));
+        }
+        if($user->name != request('name')){
+            $user->name = request('name');
+        }
+        if($user->email != request('email')){
+            $user->email = request('email');
+        }
+        if($user->birth_date != request('birthDate')){
+            $user->birth_date = request('birthDate');
+        }
+        if($user->fiscal_code != Str::upper(request('fiscalCode'))){
+            $user->fiscal_code = Str::upper(request('fiscalCode')); 
+        }
+        if($user->phone_number != request('phone')){
+            $user->phone_number = request('phone');
+        }
+        $user->save();
+        return redirect()->back()->with('success', __('User modified!'));
     }
 
     /**

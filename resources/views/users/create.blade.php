@@ -178,10 +178,6 @@
             format: 'yyyy-mm-dd',
             autoclose: true
         });
-        $('[data-toggle="popover"]').popover();
-        $('.popover-dismiss').popover({
-        trigger: 'focus'
-        });
     })
 </script> 
 @endsection
