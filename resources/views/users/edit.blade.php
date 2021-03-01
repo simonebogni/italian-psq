@@ -91,20 +91,6 @@
             <button type="submit" class="btn btn-primary btn-block">{{__("Update")}}</button>
         </div>
     </div>
-    <div class="row mt-5">
-        <div class="col">
-            <h2 class="h2 text-center text-primary">{{__("Password rules")}}</h2>
-            <p>{{__("The password must")}}:
-                <ul style="list-style: none;">
-                    <li>{{__("contain between 8 and 20 charaters")}}</li>
-                    <li>{{__("contain numbers")}}</li>
-                    <li>{{__("contain lowercase letters")}}</li>
-                    <li>{{__("contain uppercase letters")}}</li>
-                    <li>{{__("contain at least one of the following symbols: @#$%^&-+=()")}}</li>
-                </ul>
-            </p>
-        </div>
-    </div>
 </form>
 @endsection
 @section('scripts')
