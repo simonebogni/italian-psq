@@ -9,6 +9,7 @@ To try the application you can use the following credentials:
 - Username: a.manzoni@gmail.com
 - Password: 1234test
 
+
 - Role: Pediatrician
 - Username: m.rossi@italianpsq.com
 - Password: 1234test
